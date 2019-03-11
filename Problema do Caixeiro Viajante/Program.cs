@@ -23,6 +23,8 @@ namespace Problema_do_Caixeiro_Viajante
             Console.WriteLine("\n\nPressione qualquer tecla para continuar...");
             Console.ReadKey();
         }
+
+        #region matriz
         static void Preencher_Matriz(int[,] mat)
         {
             for (int linha = 0; linha < mat.GetLength(0); linha++)
@@ -44,5 +46,7 @@ namespace Problema_do_Caixeiro_Viajante
                 Console.WriteLine();
             }
         }
+        #endregion
+
     }
 }

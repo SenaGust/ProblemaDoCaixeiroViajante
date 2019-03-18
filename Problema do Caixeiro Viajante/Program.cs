@@ -12,9 +12,8 @@ namespace Problema_do_Caixeiro_Viajante
     {
         static void Main(string[] args)
         {
-            int[,] matrizDistanciaCidades;
-            int tamanho = 4;
-            matrizDistanciaCidades = new int[tamanho, tamanho];
+            int quantidadeCidades = 4;
+            int[,] matrizDistanciaCidades = new int[quantidadeCidades, quantidadeCidades];
 
             Preencher_Matriz(matrizDistanciaCidades);
             Imprimir_Matriz(matrizDistanciaCidades);
@@ -24,7 +23,7 @@ namespace Problema_do_Caixeiro_Viajante
             Console.ReadKey();
         }
 
-        #region matriz
+        #region Métodos para a Matriz
         static void Preencher_Matriz(int[,] mat)
         {
             for (int linha = 0; linha < mat.GetLength(0); linha++)

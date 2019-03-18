@@ -8,15 +8,20 @@ namespace Problema_do_Caixeiro_Viajante
 {
     class Trajeto
     {
+        #region Atributos
         char[] caminho;
         int distancia;
+        #endregion
 
+        #region Construtor
         public Trajeto(char[] caminho, int distancia)
         {
             this.caminho = caminho;
             this.distancia = distancia;
         }
+        #endregion
 
+        #region Métodos
         public string ToString2()
         {
             //retorna assim "O caminho abc possui a distância 10."
@@ -37,5 +42,6 @@ namespace Problema_do_Caixeiro_Viajante
 
             return stringBuilder.ToString();
         }
+        #endregion
     }
 }

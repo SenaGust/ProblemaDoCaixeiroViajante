@@ -12,12 +12,12 @@ namespace Problema_do_Caixeiro_Viajante
     {
         static void Main(string[] args)
         {
-            int[,] matriz;
+            int[,] matrizDistanciaCidades;
             int tamanho = 4;
-            matriz = new int[tamanho, tamanho];
+            matrizDistanciaCidades = new int[tamanho, tamanho];
 
-            Preencher_Matriz(matriz);
-            Imprimir_Matriz(matriz);
+            Preencher_Matriz(matrizDistanciaCidades);
+            Imprimir_Matriz(matrizDistanciaCidades);
 
             //Fim
             Console.WriteLine("\n\nPressione qualquer tecla para continuar...");

@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//criar arquivo csv
-
 namespace Problema_do_Caixeiro_Viajante
 {
     class Program
@@ -33,6 +31,9 @@ namespace Problema_do_Caixeiro_Viajante
                     else
                         mat[linha, coluna] = linha + coluna + 1;
         }
+        #endregion
+
+        #region Métodos usados para teste
         static void Imprimir_Matriz(int[,] matrizFrase)
         {
             //para testes
@@ -40,12 +41,11 @@ namespace Problema_do_Caixeiro_Viajante
             {
                 for (int coluna = 0; coluna < matrizFrase.GetLength(1); coluna++)
                 {
-                    Console.Write(matrizFrase[linha, coluna]+ " ");
+                    Console.Write(matrizFrase[linha, coluna] + " ");
                 }
                 Console.WriteLine();
             }
         }
         #endregion
-
     }
 }

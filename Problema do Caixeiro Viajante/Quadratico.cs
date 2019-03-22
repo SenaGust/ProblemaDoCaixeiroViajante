@@ -8,7 +8,7 @@ namespace Problema_do_Caixeiro_Viajante
 {
     class Quadratico
     {
-        #region Métodos
+        #region Método Principal
         public string GerarMelhorCaminho(MatrizCidades matriz)
         {
             int quantidadeCidades = matriz.m.GetLength(0);
@@ -26,31 +26,23 @@ namespace Problema_do_Caixeiro_Viajante
             while (!TodosVisitados(cidadeVisitada))// enquanto não visitar todos
             {
                 int menorDistancia = int.MaxValue, guardaPosicaoMenor = -1;
-                Console.WriteLine();
                 for (int proximaCidade = 1; proximaCidade < quantidadeCidades; proximaCidade++) //percorro todas as cidades
                 {
                     if (!cidadeVisitada[proximaCidade]) //se a cidade foi visitada, não precisa contar ela
                     {
                         //Console.Write(" " + proximaCidade);
                         int cidadeAtual = melhorCaminho[percorreMelhorCaminho];
-                        Console.Write(menorDistancia + " > " + matriz.m[proximaCidade, cidadeAtual]);
                         if (menorDistancia > matriz.m[proximaCidade, cidadeAtual])
                         {
                             guardaPosicaoMenor = proximaCidade;
                             menorDistancia = matriz.m[proximaCidade, cidadeAtual];
-                            Console.WriteLine("\tsim");
                         }
-                        else
-                            Console.WriteLine("\tnão");
                     }
                 }
                 cidadeVisitada[guardaPosicaoMenor] = true;
                 melhorCaminho[percorreMelhorCaminho] = guardaPosicaoMenor;
                 percorreMelhorCaminho++;
             }
-            Console.WriteLine();
-            Console.WriteLine();
-            Console.WriteLine();
             return new Trajeto(ConverterVetor(melhorCaminho), calcularDistancia(melhorCaminho, matriz)).ToString();
         }
         #endregion

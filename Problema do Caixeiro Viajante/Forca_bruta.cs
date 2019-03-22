@@ -102,28 +102,28 @@ namespace Problema_do_Caixeiro_Viajante
         }
         #endregion
 
-        #region Imprime melhor caminho
-        public void Imprime_Melhor_Caminho(int custo, Rota[] melhorRota)
-        {
-            int i; /* indexa o vetor que contem a rota */
-            Console.WriteLine("\n\nCUSTO MINIMO PARA A VIAGEM DO CAIXEIRO (FORÇA BRUTA): " + custo);
-            Console.WriteLine("\n\nMELHOR CAMINHO PARA A VIAGEM DO CAIXEIRO:");
-            Console.WriteLine("\n\n  DE            PARA           CUSTO ");
-            for (i = 0; i < melhorRota.Length; i++)
-            {
-                Console.Write("  " + melhorRota[i].cidade1 + "               " + melhorRota[i].cidade2 + "              " + melhorRota[i].custo + "\n");
-            }
-            Console.WriteLine("\n");
-        }
-        #endregion
+        //#region Imprime melhor caminho
+        //public void Imprime_Melhor_Caminho(int custo, Rota[] melhorRota)
+        //{
+        //    int i; /* indexa o vetor que contem a rota */
+        //    Console.WriteLine("\n\nCUSTO MINIMO PARA A VIAGEM DO CAIXEIRO (FORÇA BRUTA): " + custo);
+        //    Console.WriteLine("\n\nMELHOR CAMINHO PARA A VIAGEM DO CAIXEIRO:");
+        //    Console.WriteLine("\n\n  DE            PARA           CUSTO ");
+        //    for (i = 0; i < melhorRota.Length; i++)
+        //    {
+        //        Console.Write("  " + melhorRota[i].cidade1 + "               " + melhorRota[i].cidade2 + "              " + melhorRota[i].custo + "\n");
+        //    }
+        //    Console.WriteLine("\n");
+        //}
+        //#endregion
 
-        #region Imprime Tempo
-        public void imprime_Tempo(Stopwatch tempo)
-        {
-            Console.Write("TEMPO DE EXECUÇÂO (FORÇA BRUTA): ");
-            Console.WriteLine("  "+tempo.Elapsed.Hours + " horas " + tempo.Elapsed.Minutes + " minutos " + tempo.Elapsed.Seconds + " segundos " + tempo.Elapsed.Milliseconds + " milisegundos");
-        }
-        #endregion
+        //#region Imprime Tempo
+        //public void imprime_Tempo(Stopwatch tempo)
+        //{
+        //    Console.Write("TEMPO DE EXECUÇÂO (FORÇA BRUTA): ");
+        //    Console.WriteLine("  "+tempo.Elapsed.Hours + " horas " + tempo.Elapsed.Minutes + " minutos " + tempo.Elapsed.Seconds + " segundos " + tempo.Elapsed.Milliseconds + " milisegundos");
+        //}
+        //#endregion
     }
 
 }

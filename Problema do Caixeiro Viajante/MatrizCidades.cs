@@ -8,7 +8,7 @@ namespace Problema_do_Caixeiro_Viajante
 {
     class MatrizCidades
     {
-        int[,] m;
+        public int[,] m;
 
         #region Contrutor
         public MatrizCidades(int quantidadeCidades)

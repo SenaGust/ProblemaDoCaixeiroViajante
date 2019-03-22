@@ -21,21 +21,11 @@ namespace Problema_do_Caixeiro_Viajante
         }
         #endregion
 
-        #region Métodos
-        public void RetornaMenorDistancia()
+        #region gera caminhos
+        public void Escolher_caminhos(ref int[] permutacao,  , Rota[] melhorRota, out int melhorCusto)
         {
-            PermutarCidades();
-            DescobreTrajetoMenorDistancia();
-        }
-
-        private void PermutarCidades()
-        {
-
-        }
-
-        private void DescobreTrajetoMenorDistancia()
-        {
-
+            int controle = -1;
+            melhorCusto = int.MaxValue;
         }
         #endregion
 

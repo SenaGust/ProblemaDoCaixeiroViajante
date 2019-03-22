@@ -22,14 +22,26 @@ namespace Problema_do_Caixeiro_Viajante
         }
 
         #region Métodos para a Matriz
-        static void Preencher_Matriz(int[,] mat)
+        static void Preencher_Matriz(int[,] matriz)
         {
-            for (int linha = 0; linha < mat.GetLength(0); linha++)
-                for (int coluna = 0; coluna < mat.GetLength(1); coluna++)
-                    if (linha == coluna)
-                        mat[linha, coluna] = 0;
+            int custo;
+            Random randomizer = new Random(); //criar distâncias 
+
+            for (int linha = 0; linha < matriz.GetLength(0); linha++)
+            {
+                for (int coluna = 0; coluna < matriz.GetLength(1); coluna++)
+                {
+                    custo = randomizer.Next(10) + 1;
+                    if (linha < coluna)
+                        matriz[linha, coluna] = custo;
                     else
-                        mat[linha, coluna] = linha + coluna + 1;
+                        if (linha == coluna)
+                        matriz[linha, coluna] = 0;
+                    else
+                        matriz[linha, coluna] = matriz[coluna, linha];
+                }
+            }
+            
         }
         #endregion
 

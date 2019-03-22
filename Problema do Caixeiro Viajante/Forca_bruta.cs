@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Diagnostics;
 
 namespace Problema_do_Caixeiro_Viajante
 {
@@ -13,24 +14,18 @@ namespace Problema_do_Caixeiro_Viajante
 
     class Forca_bruta
     {
-        #region Atributos
-        Trajeto[] todosTrajetos;
-        int[,] matrizDistancias;
-        #endregion
-
-        #region Construtor
-        public Forca_bruta(int[,] matrizDistancias)
-        {
-            this.matrizDistancias = matrizDistancias; //acha que isso é necessário?
-            todosTrajetos = new Trajeto[Fatorial(matrizDistancias.GetLength(0))]; //fatorial do total de linhas/colunas (que é a quantidade total de cidades)
-        }
-        #endregion
-
         #region gera caminhos
-        public void Escolher_caminhos(ref int[] permutacao, Rota[] melhorRota, out int melhorCusto)
+        public void Escolher_caminhos(ref int[] permutacao,MatrizCidades matrizDistancias, Rota[] melhorRota, out int melhorCusto)
         {
             int controle = -1;
             melhorCusto = int.MaxValue;
+
+            for (int i = 0; i < melhorRota.Length; i++)
+                melhorRota[i] = new Rota();
+
+            /* Gera os caminhos possiveis e escolhe o melhor, chamando a funcao recursiva
+             permuta */
+            permuta(permutacao,matrizDistancias,  melhorRota, ref melhorCusto, controle, 1);
         }
         #endregion
 
@@ -47,16 +42,16 @@ namespace Problema_do_Caixeiro_Viajante
         #endregion
 
         #region Permutação
-        void permuta(int[] permutacao, MatrizCidades matriz, Rota[] melhorRota, ref int melhorCusto, int controle, int k)
+        void permuta(int[] permutacao, MatrizCidades matrizDistancias, Rota[] melhorRota, ref int melhorCusto, int controle, int k)
         {
             int i;
             permutacao[k] = ++controle;
             if (controle == (melhorRota.Length - 1)) /* se gerou um caminho então verifica se ele é melhor */
-                Melhor_caminho(matriz, melhorRota, ref melhorCusto, permutacao);
+                Melhor_caminho(matrizDistancias, melhorRota, ref melhorCusto, permutacao);
             else
                 for (i = 1; i < melhorRota.Length; i++)
                     if (permutacao[i] == 0)
-                        permuta(permutacao, matriz, melhorRota, ref melhorCusto, controle, i);
+                        permuta(permutacao, matrizDistancias, melhorRota, ref melhorCusto, controle, i);
             controle--;
             permutacao[k] = 0;
         }
@@ -104,6 +99,29 @@ namespace Problema_do_Caixeiro_Viajante
                     melhorRota[k].custo = matriz.m[cid1, cid2];
                 }
             }
+        }
+        #endregion
+
+        #region Imprime melhor caminho
+        public void Imprime_Melhor_Caminho(int custo, Rota[] melhorRota)
+        {
+            int i; /* indexa o vetor que contem a rota */
+            Console.WriteLine("\n\nCUSTO MINIMO PARA A VIAGEM DO CAIXEIRO (FORÇA BRUTA): " + custo);
+            Console.WriteLine("\n\nMELHOR CAMINHO PARA A VIAGEM DO CAIXEIRO:");
+            Console.WriteLine("\n\n  DE            PARA           CUSTO ");
+            for (i = 0; i < melhorRota.Length; i++)
+            {
+                Console.Write("  " + melhorRota[i].cidade1 + "               " + melhorRota[i].cidade2 + "              " + melhorRota[i].custo + "\n");
+            }
+            Console.WriteLine("\n");
+        }
+        #endregion
+
+        #region Imprime Tempo
+        public void imprime_Tempo(Stopwatch tempo)
+        {
+            Console.Write("TEMPO DE EXECUÇÂO (FORÇA BRUTA): ");
+            Console.WriteLine("  "+tempo.Elapsed.Hours + " horas " + tempo.Elapsed.Minutes + " minutos " + tempo.Elapsed.Seconds + " segundos " + tempo.Elapsed.Milliseconds + " milisegundos");
         }
         #endregion
     }

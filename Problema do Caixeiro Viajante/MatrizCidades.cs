@@ -8,7 +8,7 @@ namespace Problema_do_Caixeiro_Viajante
 {
     class MatrizCidades
     {
-        public int[,] m;
+        public int[,] m { get; set; }
 
         #region Contrutor
         public MatrizCidades(int quantidadeCidades)
@@ -16,7 +16,6 @@ namespace Problema_do_Caixeiro_Viajante
             m = new int[quantidadeCidades, quantidadeCidades];
         }
         #endregion
-
 
         #region Métodos
         public void Preencher()
@@ -47,7 +46,25 @@ namespace Problema_do_Caixeiro_Viajante
             {
                 for (int coluna = 0; coluna < m.GetLength(1); coluna++)
                 {
-                    Console.Write(m[linha, coluna] + " ");
+                    Console.Write(m[linha, coluna] + "\t");
+                }
+                Console.WriteLine();
+            }
+        }
+        public void ImprimirComTitulo()
+        {
+            //para testes
+            Console.Write("\t");
+            for (int pos = 0; pos < m.GetLength(0); pos++)
+                Console.Write(pos + "\t");
+            Console.WriteLine();
+
+            for (int linha = 0; linha < m.GetLength(0); linha++)
+            {
+                Console.Write(linha + "\t");
+                for (int coluna = 0; coluna < m.GetLength(1); coluna++)
+                {
+                    Console.Write(m[linha, coluna] + "\t");
                 }
                 Console.WriteLine();
             }

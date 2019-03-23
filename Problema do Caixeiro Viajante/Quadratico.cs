@@ -9,9 +9,9 @@ namespace Problema_do_Caixeiro_Viajante
     class Quadratico
     {
         #region Método Principal
-        public string GerarMelhorCaminho(MatrizCidades matriz)
+        public string GerarMelhorCaminho(Cidades matriz)
         {
-            int quantidadeCidades = matriz.m.GetLength(0);
+            int quantidadeCidades = matriz.Matriz.GetLength(0);
 
             int[] melhorCaminho = new int[quantidadeCidades]; //preenche a rota mais rapida
             bool[] cidadeVisitada = new bool[quantidadeCidades]; //sei se a cidade foi visitada ou nãp
@@ -32,10 +32,10 @@ namespace Problema_do_Caixeiro_Viajante
                     {
                         //Console.Write(" " + proximaCidade);
                         int cidadeAtual = melhorCaminho[percorreMelhorCaminho];
-                        if (menorDistancia > matriz.m[proximaCidade, cidadeAtual])
+                        if (menorDistancia > matriz.Matriz[proximaCidade, cidadeAtual])
                         {
                             guardaPosicaoMenor = proximaCidade;
-                            menorDistancia = matriz.m[proximaCidade, cidadeAtual];
+                            menorDistancia = matriz.Matriz[proximaCidade, cidadeAtual];
                         }
                     }
                 }
@@ -66,15 +66,15 @@ namespace Problema_do_Caixeiro_Viajante
 
             return aux.ToString();
         }
-        private int calcularDistancia(int[] melhorCaminho, MatrizCidades matriz)
+        private int calcularDistancia(int[] melhorCaminho, Cidades matriz)
         {
             int valorTotal = 0;
             for (int pos = 0; pos < melhorCaminho.Length; pos++)
             {
                 if (pos + 1 >= melhorCaminho.Length)
-                    valorTotal += matriz.m[melhorCaminho[pos], 0];
+                    valorTotal += matriz.Matriz[melhorCaminho[pos], 0];
                 else
-                    valorTotal += matriz.m[melhorCaminho[pos], melhorCaminho[pos + 1]];
+                    valorTotal += matriz.Matriz[melhorCaminho[pos], melhorCaminho[pos + 1]];
             }
             return valorTotal;
         }

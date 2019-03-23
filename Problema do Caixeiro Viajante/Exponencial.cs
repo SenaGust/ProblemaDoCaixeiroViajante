@@ -9,17 +9,19 @@ namespace Problema_do_Caixeiro_Viajante
 {
     class Exponencial
     {
-        static int somaTotal = int.MaxValue; //vai ser usada para auxiliar na descoberta do menor caminho
+        int somaTotal = int.MaxValue; //vai ser usada para auxiliar na descoberta do menor caminho
 
-        public int Fatorial(int fat) //número de permutações possíveis //recebe número de cidades
+        public int Fatorial(int num) //número de permutações possíveis //recebe número de cidades
         {
-            if (fat == 0)
-                return 1;
-            else
-                return fat * Fatorial(fat - 1);
+            int total = 1;
+            for (int pos = 2; pos <= num; pos++)
+            {
+                total *= pos;
+            }
+            return total;
         }
 
-        public void Permutacoes(MatrizCidades cidades, int tam, int[] vetResp)
+        public void Permutacoes(Cidades cidades, int tam, int[] vetResp)
         {
             int[] vet = new int[tam]; //cria vetor cujo tamanho é o número de cidades
             int aux = 0, fat = Fatorial(tam); //aciona a recursividade do número de permutações possíveis
@@ -42,7 +44,7 @@ namespace Problema_do_Caixeiro_Viajante
             }
         }
 
-        public void Menor_Caminho(int[] vetCaminho, MatrizCidades cidades, int[] vetResp)//Verifica menor caminho.
+        public void Menor_Caminho(int[] vetCaminho, Cidades cidades, int[] vetResp)//Verifica menor caminho.
         {
             //int[,] aux = new int[cidades.GetLength(0), cidades.GetLength(1)];
             //for(int linha=0;linha<cidades.GetLength(0);linha++)
@@ -57,7 +59,7 @@ namespace Problema_do_Caixeiro_Viajante
 
             for (int i = 0; i < vetCaminho.Length - 1; i++)//Custo total do caminho.
             {
-                aux_2 += cidades.m[vetCaminho[i], vetCaminho[i + 1]]; 
+                aux_2 += cidades.Matriz[vetCaminho[i], vetCaminho[i + 1]]; 
 
                 if (aux_2 > somaTotal)
                     i = vetCaminho.Length;
@@ -75,28 +77,25 @@ namespace Problema_do_Caixeiro_Viajante
 
         }
 
-         public void imprimeResultados(int tamanho, MatrizCidades cidades)//Imprimir resultados no Main.
-            {
+        public void imprimeResultados(int tamanho, Cidades cidades)//Imprimir resultados no Main.
+        {
             int[] vetResp = new int[tamanho];
-                Stopwatch relogio = new Stopwatch();//Objeto para diagnóstico de tempo.
+            Stopwatch relogio = new Stopwatch();//Objeto para diagnóstico de tempo.
 
-                relogio.Start();//Começa acontar o tempo.
-                Permutacoes(cidades, tamanho, vetResp);
-                relogio.Stop();//Para de contar o tempo.
+            relogio.Start();//Começa acontar o tempo.
+            Permutacoes(cidades, tamanho, vetResp);
+            relogio.Stop();//Para de contar o tempo.
 
-                Console.WriteLine("Total de combinações possíveis: " + Fatorial(tamanho));
-                Console.WriteLine("Peso total do menor caminho: " + somaTotal);
-                Console.Write("Menor caminho: ");
-                for (int i = 0; i < vetResp.Length; i++)
-                {
-                    Console.Write(vetResp[i] + " ");
-                }
-
-                Console.WriteLine("\nTempo gasto: ");
-                Console.WriteLine("Horas: " + relogio.Elapsed.Hours + ", minutos: " + relogio.Elapsed.Minutes + ", segundos: " + relogio.Elapsed.Seconds + ", milissegundos: " + relogio.Elapsed.Milliseconds);
+            Console.WriteLine("Total de combinações possíveis: " + Fatorial(tamanho));
+            Console.WriteLine("Peso total do menor caminho: " + somaTotal);
+            Console.Write("Menor caminho: ");
+            for (int i = 0; i < vetResp.Length; i++)
+            {
+                Console.Write(vetResp[i] + " ");
             }
-        
 
-
+            Console.WriteLine("\nTempo gasto: ");
+            Console.WriteLine("Horas: " + relogio.Elapsed.Hours + ", minutos: " + relogio.Elapsed.Minutes + ", segundos: " + relogio.Elapsed.Seconds + ", milissegundos: " + relogio.Elapsed.Milliseconds);
+        }
     }
 }

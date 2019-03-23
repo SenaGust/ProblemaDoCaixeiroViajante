@@ -15,7 +15,7 @@ namespace Problema_do_Caixeiro_Viajante
     class Forca_bruta
     {
         #region gera caminhos
-        public void Escolher_caminhos(ref int[] permutacao,MatrizCidades matrizDistancias, Rota[] melhorRota, out int melhorCusto)
+        public void Escolher_caminhos(ref int[] permutacao,Cidades matrizDistancias, Rota[] melhorRota, out int melhorCusto)
         {
             int controle = -1;
             melhorCusto = int.MaxValue;
@@ -25,24 +25,12 @@ namespace Problema_do_Caixeiro_Viajante
 
             /* Gera os caminhos possiveis e escolhe o melhor, chamando a funcao recursiva
              permuta */
-            permuta(permutacao,matrizDistancias,  melhorRota, ref melhorCusto, controle, 1);
-        }
-        #endregion
-
-        #region Métodos Auxiliares
-        private int Fatorial(int numero)
-        {
-            int total = 1;
-            for (int pos = 2; pos <= numero; pos++)
-            {
-                total *= total;
-            }
-            return total;
+            permuta(permutacao,matrizDistancias, melhorRota, ref melhorCusto, controle, 1);
         }
         #endregion
 
         #region Permutação
-        void permuta(int[] permutacao, MatrizCidades matrizDistancias, Rota[] melhorRota, ref int melhorCusto, int controle, int k)
+        void permuta(int[] permutacao, Cidades matrizDistancias, Rota[] melhorRota, ref int melhorCusto, int controle, int k)
         {
             int i;
             permutacao[k] = ++controle;
@@ -57,9 +45,8 @@ namespace Problema_do_Caixeiro_Viajante
         }
         #endregion
 
-
         #region melhor caminho
-        public void Melhor_caminho(MatrizCidades matriz, Rota[] melhorRota, ref int melhorCusto, int[] permutacao)
+        public void Melhor_caminho(Cidades matriz, Rota[] melhorRota, ref int melhorCusto, int[] permutacao)
         {
             int j, k;                     /* contadores: auxiliam a montagem das rotas */
             int cid1, cid2;             /* cidades da melhor rota */
@@ -72,19 +59,19 @@ namespace Problema_do_Caixeiro_Viajante
             /* monta uma rota com a permutacao */
             cid1 = 0;									/* a primeira cidade é a cidade 0 */
             cid2 = permutacao[1];
-            custo = matriz.m[cid1, cid2];
+            custo = matriz.Matriz[cid1, cid2];
             proxDaRota[cid1] = cid2;
 
             for (j = 2; j < melhorRota.Length; j++)
             {
                 cid1 = cid2;
                 cid2 = permutacao[j];
-                custo += matriz.m[cid1, cid2];  /* calcula o custo parcial da rota */
+                custo += matriz.Matriz[cid1, cid2];  /* calcula o custo parcial da rota */
                 proxDaRota[cid1] = cid2;      /* armazena a rota fornecida pela permutacao */
             }
 
             proxDaRota[cid2] = 0;			/* completa o ciclo da viagem */
-            custo += matriz.m[cid2, 0];  /* custo total desta rota */
+            custo += matriz.Matriz[cid2, 0];  /* custo total desta rota */
 
             if (custo < melhorCusto)	/* procura pelo melhor (menor) custo */
             {
@@ -96,7 +83,7 @@ namespace Problema_do_Caixeiro_Viajante
                     cid2 = proxDaRota[cid1];
                     melhorRota[k].cidade1 = cid1;
                     melhorRota[k].cidade2 = cid2;
-                    melhorRota[k].custo = matriz.m[cid1, cid2];
+                    melhorRota[k].custo = matriz.Matriz[cid1, cid2];
                 }
             }
         }

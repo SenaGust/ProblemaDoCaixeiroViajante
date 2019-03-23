@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace Problema_do_Caixeiro_Viajante
 {
-    class MatrizCidades
+    class Cidades
     {
-        public int[,] m { get; set; }
+        public int[,] Matriz { get; set; }
 
         #region Contrutor
-        public MatrizCidades(int quantidadeCidades)
+        public Cidades(int quantidadeCidades)
         {
-            m = new int[quantidadeCidades, quantidadeCidades];
+            Matriz = new int[quantidadeCidades, quantidadeCidades];
         }
         #endregion
 
@@ -23,18 +23,18 @@ namespace Problema_do_Caixeiro_Viajante
             int custo;
             Random randomizer = new Random(); //criar distâncias 
 
-            for (int linha = 0; linha < m.GetLength(0); linha++)
+            for (int linha = 0; linha < Matriz.GetLength(0); linha++)
             {
-                for (int coluna = 0; coluna < m.GetLength(1); coluna++)
+                for (int coluna = 0; coluna < Matriz.GetLength(1); coluna++)
                 {
                     custo = randomizer.Next(10) + 1;
                     if (linha < coluna)
-                        m[linha, coluna] = custo;
+                        Matriz[linha, coluna] = custo;
                     else
                         if (linha == coluna)
-                        m[linha, coluna] = 0;
+                        Matriz[linha, coluna] = 0;
                     else
-                        m[linha, coluna] = m[coluna, linha];
+                        Matriz[linha, coluna] = Matriz[coluna, linha];
                 }
             }
 
@@ -42,11 +42,11 @@ namespace Problema_do_Caixeiro_Viajante
         public void Imprimir()
         {
             //para testes
-            for (int linha = 0; linha < m.GetLength(0); linha++)
+            for (int linha = 0; linha < Matriz.GetLength(0); linha++)
             {
-                for (int coluna = 0; coluna < m.GetLength(1); coluna++)
+                for (int coluna = 0; coluna < Matriz.GetLength(1); coluna++)
                 {
-                    Console.Write(m[linha, coluna] + "\t");
+                    Console.Write(Matriz[linha, coluna] + "\t");
                 }
                 Console.WriteLine();
             }
@@ -55,16 +55,16 @@ namespace Problema_do_Caixeiro_Viajante
         {
             //para testes
             Console.Write("\t");
-            for (int pos = 0; pos < m.GetLength(0); pos++)
+            for (int pos = 0; pos < Matriz.GetLength(0); pos++)
                 Console.Write(pos + "\t");
             Console.WriteLine();
 
-            for (int linha = 0; linha < m.GetLength(0); linha++)
+            for (int linha = 0; linha < Matriz.GetLength(0); linha++)
             {
                 Console.Write(linha + "\t");
-                for (int coluna = 0; coluna < m.GetLength(1); coluna++)
+                for (int coluna = 0; coluna < Matriz.GetLength(1); coluna++)
                 {
-                    Console.Write(m[linha, coluna] + "\t");
+                    Console.Write(Matriz[linha, coluna] + "\t");
                 }
                 Console.WriteLine();
             }

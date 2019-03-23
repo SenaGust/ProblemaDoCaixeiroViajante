@@ -19,7 +19,7 @@ namespace Problema_do_Caixeiro_Viajante
                 return fat * Fatorial(fat - 1);
         }
 
-        public void Permutacoes(MatrizCidades[,] cidades, int tam, int[] vetResp)
+        public void Permutacoes(MatrizCidades cidades, int tam, int[] vetResp)
         {
             int[] vet = new int[tam]; //cria vetor cujo tamanho é o número de cidades
             int aux = 0, fat = Fatorial(tam); //aciona a recursividade do número de permutações possíveis
@@ -42,22 +42,22 @@ namespace Problema_do_Caixeiro_Viajante
             }
         }
 
-        public void Menor_Caminho(int[] vetCaminho, MatrizCidades[,] cidades, int[] vetResp)//Verifica menor caminho.
+        public void Menor_Caminho(int[] vetCaminho, MatrizCidades cidades, int[] vetResp)//Verifica menor caminho.
         {
-            int[,] aux = new int[cidades.GetLength(0), cidades.GetLength(1)];
-            for(int linha=0;linha<cidades.GetLength(0);linha++)
-            {
-                for(int coluna=0;coluna<cidades.GetLength(1);coluna++)
-                {
-                    aux[linha, coluna] = Convert.ToInt32(cidades[linha, coluna]);
-                }
-            }
+            //int[,] aux = new int[cidades.GetLength(0), cidades.GetLength(1)];
+            //for(int linha=0;linha<cidades.GetLength(0);linha++)
+            //{
+            //    for(int coluna=0;coluna<cidades.GetLength(1);coluna++)
+            //    {
+            //        aux[linha, coluna] = Convert.ToInt32(cidades[linha, coluna]);
+            //    }
+            //}
 
             int aux_2 = 0;
 
             for (int i = 0; i < vetCaminho.Length - 1; i++)//Custo total do caminho.
             {
-                aux_2 += aux[vetCaminho[i], vetCaminho[i + 1]]; 
+                aux_2 += cidades.m[vetCaminho[i], vetCaminho[i + 1]]; 
 
                 if (aux_2 > somaTotal)
                     i = vetCaminho.Length;
@@ -75,7 +75,7 @@ namespace Problema_do_Caixeiro_Viajante
 
         }
 
-         public void imprimeResultados(int tamanho, MatrizCidades[,] cidades, int[]vetResp)//Imprimir resultados no Main.
+         public void imprimeResultados(int tamanho, MatrizCidades cidades, int[]vetResp)//Imprimir resultados no Main.
             {
                 Stopwatch relogio = new Stopwatch();//Objeto para diagnóstico de tempo.
 

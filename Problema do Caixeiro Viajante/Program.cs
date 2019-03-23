@@ -12,7 +12,7 @@ namespace Problema_do_Caixeiro_Viajante
     {
         static void Main(string[] args)
         {
-            //testeLorena();
+            testeLorena();
             ProgramFinal();
 
             //Fim
@@ -23,8 +23,7 @@ namespace Problema_do_Caixeiro_Viajante
         {
             int[] permutacao; //vetor com um caminho possível
             Rota[] melhorRota; //contem a melhor rota de viagem
-            int[] melhoresCaminhos; //vai guardar as respostas dos melhores caminhos 
-            int qtdeCidades = 10, custo = 0;
+            int qtdeCidades = 10;
             MatrizCidades matriz = new MatrizCidades(qtdeCidades);
             matriz.Preencher(); //caixeiro.monta_matriz
             matriz.Imprimir();
@@ -33,7 +32,7 @@ namespace Problema_do_Caixeiro_Viajante
             melhorRota = new Rota[qtdeCidades]; //tenho quase certeza que pode tirar isso
 
             Exponencial vizinho = new Exponencial();
-            vizinho.imprimeResultados(qtdeCidades, matriz, melhoresCaminhos);
+            vizinho.imprimeResultados(qtdeCidades, matriz);
         }
         static void ProgramFinal()
         {

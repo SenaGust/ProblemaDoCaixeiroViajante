@@ -75,8 +75,9 @@ namespace Problema_do_Caixeiro_Viajante
 
         }
 
-         public void imprimeResultados(int tamanho, MatrizCidades cidades, int[]vetResp)//Imprimir resultados no Main.
+         public void imprimeResultados(int tamanho, MatrizCidades cidades)//Imprimir resultados no Main.
             {
+            int[] vetResp = new int[tamanho];
                 Stopwatch relogio = new Stopwatch();//Objeto para diagnóstico de tempo.
 
                 relogio.Start();//Começa acontar o tempo.

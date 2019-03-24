@@ -12,28 +12,13 @@ namespace Problema_do_Caixeiro_Viajante
     {
         static void Main(string[] args)
         {
-            //testeLorena();
             ProgramFinal();
 
             //Fim
             Console.WriteLine("\n\nPressione qualquer tecla para continuar...");
             Console.ReadKey();
         }
-        static void testeLorena()
-        {
-            int[] permutacao; //vetor com um caminho possível
-            Rota[] melhorRota; //contem a melhor rota de viagem
-            int qtdeCidades = 10;
-            Cidades matriz = new Cidades(qtdeCidades);
-            matriz.Preencher(); //caixeiro.monta_matriz
-            matriz.Imprimir();
-            
-            permutacao = new int[qtdeCidades];  //tenho quase certeza que pode tirar isso
-            melhorRota = new Rota[qtdeCidades]; //tenho quase certeza que pode tirar isso
-
-            Exponencial vizinho = new Exponencial();
-            vizinho.imprimeResultados(qtdeCidades, matriz);
-        }
+       
         static void ProgramFinal()
         {
             #region Criando Arquivo .CSV

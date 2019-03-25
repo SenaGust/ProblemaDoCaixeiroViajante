@@ -28,35 +28,35 @@ namespace Problema_do_Caixeiro_Viajante
             #endregion
 
             //n= 3,4, 5, 6, 7, 8, 9,10, 15, 20, 25, 30 
-            Console.WriteLine("Começa" + 3);
+            Console.WriteLine("Começa: " + 3);
             Inicializa(3);
-            Console.WriteLine("Começa" + 4);
+            Console.WriteLine("Começa: " + 4);
             Inicializa(4);
-            Console.WriteLine("Começa" + 5);
+            Console.WriteLine("Começa: " + 5);
             Inicializa(5);
-            Console.WriteLine("Começa" + 6);
+            Console.WriteLine("Começa: " + 6);
             Inicializa(6);
-            Console.WriteLine("Começa" + 7);
+            Console.WriteLine("Começa: " + 7);
             Inicializa(7);
-            Console.WriteLine("Começa" + 8);
+            Console.WriteLine("Começa: " + 8);
             Inicializa(8);
-            Console.WriteLine("Começa" + 9);
+            Console.WriteLine("Começa: " + 9);
             Inicializa(9);
-            Console.WriteLine("Começa" + 10);
+            Console.WriteLine("Começa: " + 10);
             Inicializa(10);
-            Console.WriteLine("Começa" + 15);
+            Console.WriteLine("Começa: " + 15);
             Inicializa(15);
-            Console.WriteLine("Começa" + 20);
+            Console.WriteLine("Começa: " + 20);
             Inicializa(20);
-            Console.WriteLine("Começa" + 25);
+            Console.WriteLine("Começa: " + 25);
             Inicializa(25);
-            Console.WriteLine("Começa" + 30);
+            Console.WriteLine("Começa: " + 30);
             Inicializa(30);
         }
 
         static void contabilizaTodosTempos(Cidades matriz)
         {
-            string nomeArquivo = "testeQuadratico.csv";
+            string nomeArquivo = "Dados do exercício.csv";
             StreamWriter escreverArquivo = new StreamWriter(nomeArquivo, true); //se existe, continua a escrever
             Stopwatch watch;
 
@@ -65,12 +65,12 @@ namespace Problema_do_Caixeiro_Viajante
 
             //inicia contagem do tempo
             watch = Stopwatch.StartNew();
+            Console.Write("\nQuadrático: ");
             Console.WriteLine(CaixeiroQuadratico.GerarMelhorCaminho(matriz));
             watch.Stop();
             //finaliza contagem do tempo
 
             var tempoQuadratico = watch.ElapsedMilliseconds; //salva tempo
-            Console.WriteLine("Termina Quadratico");
             #endregion
 
             #region Testando Força Bruta
@@ -86,12 +86,12 @@ namespace Problema_do_Caixeiro_Viajante
             //inicia contagem do tempo
             watch = Stopwatch.StartNew();
             caixeiro_forca_bruta.Escolher_caminhos(ref permutacao, matriz, melhorRota, out custo);
-            //caixeiro_forca_bruta.Imprime_Melhor_Caminho(custo, melhorRota);
+            Console.Write("\nForça bruta: ");
+            Console.WriteLine(caixeiro_forca_bruta.Imprime_Melhor_Caminho(custo, melhorRota));
             watch.Stop();
             //finaliza contagem do tempo
 
             var tempoForcaBruta = watch.ElapsedMilliseconds; //salva tempo
-            Console.WriteLine("Termina força bruta");
             #endregion
 
             #region Testando Exponencial
@@ -107,10 +107,11 @@ namespace Problema_do_Caixeiro_Viajante
             //finaliza contagem do tempo
 
             var tempoExponencial = watch.ElapsedMilliseconds; //salva tempo
-            Console.WriteLine("Termina Exponencial");
             #endregion
-
+            Console.Write("\nExponencial: ");
+            Console.WriteLine(vizinho.imprimeResultados(permutacao, matriz));
             escreverArquivo.WriteLine("{0};{1};{2};{3}", matriz.Matriz.GetLength(0), tempoForcaBruta, tempoExponencial, tempoQuadratico);
+            Console.WriteLine("---------//-----------------//---------------//---------------//----------------------//----------");
             escreverArquivo.Close();
         }
         static void Inicializa(int qtdeCidades)

@@ -24,8 +24,8 @@ namespace Problema_do_Caixeiro_Viajante
         public void Permutacoes(Cidades cidades, int tam, int[] vetResp)
         {
             int[] vet = new int[tam]; //cria vetor cujo tamanho é o número de cidades
-            int aux = 0, fat = Fatorial(tam); //aciona a recursividade do número de permutações possíveis
-
+            int aux = 0, fat = Fatorial(tam-1); //aciona a recursividade do número de permutações possíveis
+            vetResp[0] = 0;
             for (int i = 0; i < tam; i++)//Preenche vetor com as cidades.
             {
                 vet[i] = i;
@@ -33,7 +33,7 @@ namespace Problema_do_Caixeiro_Viajante
 
             for (int n = 0; n < fat; n++)//Total de permutações
             {
-                for (int i = 0; i < tam - 1; i++)//Permutar e compor o caminho.
+                for (int i = 1; i < tam - 1; i++)//Permutar e compor o caminho.
                 {
                     Menor_Caminho(vet, cidades, vetResp); //aciona método do menor caminho
 
@@ -46,15 +46,6 @@ namespace Problema_do_Caixeiro_Viajante
 
         public void Menor_Caminho(int[] vetCaminho, Cidades cidades, int[] vetResp)//Verifica menor caminho.
         {
-            //int[,] aux = new int[cidades.GetLength(0), cidades.GetLength(1)];
-            //for(int linha=0;linha<cidades.GetLength(0);linha++)
-            //{
-            //    for(int coluna=0;coluna<cidades.GetLength(1);coluna++)
-            //    {
-            //        aux[linha, coluna] = Convert.ToInt32(cidades[linha, coluna]);
-            //    }
-            //}
-
             int aux_2 = 0;
 
             for (int i = 0; i < vetCaminho.Length - 1; i++)//Custo total do caminho.
@@ -75,27 +66,34 @@ namespace Problema_do_Caixeiro_Viajante
                 }
             }
 
+            
+
         }
 
-        public void imprimeResultados(int tamanho, Cidades cidades)//Imprimir resultados no Main.
+        private int calcularDistancia(int[] melhorCaminho, Cidades matriz)
         {
-            int[] vetResp = new int[tamanho];
-            Stopwatch relogio = new Stopwatch();//Objeto para diagnóstico de tempo.
-
-            relogio.Start();//Começa acontar o tempo.
-            Permutacoes(cidades, tamanho, vetResp);
-            relogio.Stop();//Para de contar o tempo.
-
-            Console.WriteLine("Total de combinações possíveis: " + Fatorial(tamanho));
-            Console.WriteLine("Peso total do menor caminho: " + somaTotal);
-            Console.Write("Menor caminho: ");
-            for (int i = 0; i < vetResp.Length; i++)
+            int valorTotal = 0;
+            for (int pos = 0; pos < melhorCaminho.Length; pos++)
             {
-                Console.Write(vetResp[i] + " ");
+                if (pos + 1 >= melhorCaminho.Length)
+                    valorTotal += matriz.Matriz[melhorCaminho[pos], 0];
+                else
+                    valorTotal += matriz.Matriz[melhorCaminho[pos], melhorCaminho[pos + 1]];
+            }
+            return valorTotal;
+        }
+
+        public string imprimeResultados(int [] melhorRota, Cidades matriz)//Imprimir resultados no Main.
+        {
+            int custo = calcularDistancia(melhorRota, matriz);
+
+            StringBuilder aux = new StringBuilder();
+            for (int pos = 0; pos < melhorRota.Length; pos++)
+            {
+                aux.Append(melhorRota[pos] + " ");
             }
 
-            Console.WriteLine("\nTempo gasto: ");
-            Console.WriteLine("Horas: " + relogio.Elapsed.Hours + ", minutos: " + relogio.Elapsed.Minutes + ", segundos: " + relogio.Elapsed.Seconds + ", milissegundos: " + relogio.Elapsed.Milliseconds);
+            return new Trajeto(aux.ToString(), custo).ToString();
         }
     }
 }

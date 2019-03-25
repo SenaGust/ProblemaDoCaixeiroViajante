@@ -25,7 +25,7 @@ namespace Problema_do_Caixeiro_Viajante
         public override string ToString()
         {
             //retorna assim "O caminho abc possui a distância 10."
-            return "O caminho " + caminho + " possui a distância " + distancia + ".";
+            return "Melhor caminho: " + caminho + " possui a distância " + distancia + ".";
         }
         #endregion
     }

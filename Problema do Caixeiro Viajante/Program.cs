@@ -30,28 +30,28 @@ namespace Problema_do_Caixeiro_Viajante
             //n= 3,4, 5, 6, 7, 8, 9,10, 15, 20, 25, 30 
             Console.WriteLine("Começa" + 3);
             Inicializa(3);
-            //Console.WriteLine("Começa" + 4);
-            //Inicializa(4);
-            //Console.WriteLine("Começa" + 5);
-            //Inicializa(5);
-            //Console.WriteLine("Começa" + 6);
-            //Inicializa(6);
-            //Console.WriteLine("Começa" + 7);
-            //Inicializa(7);
-            //Console.WriteLine("Começa" + 8);
-            //Inicializa(8);
-            //Console.WriteLine("Começa" + 9);
-            //Inicializa(9);
-            //Console.WriteLine("Começa" + 10);
-            //Inicializa(10);
-            //Console.WriteLine("Começa" + 15);
-            //Inicializa(15);
-            //Console.WriteLine("Começa" + 20);
-            //Inicializa(20);
-            //Console.WriteLine("Começa" + 25);
-            //Inicializa(25);
-            //Console.WriteLine("Começa" + 30);
-            //Inicializa(30);
+            Console.WriteLine("Começa" + 4);
+            Inicializa(4);
+            Console.WriteLine("Começa" + 5);
+            Inicializa(5);
+            Console.WriteLine("Começa" + 6);
+            Inicializa(6);
+            Console.WriteLine("Começa" + 7);
+            Inicializa(7);
+            Console.WriteLine("Começa" + 8);
+            Inicializa(8);
+            Console.WriteLine("Começa" + 9);
+            Inicializa(9);
+            Console.WriteLine("Começa" + 10);
+            Inicializa(10);
+            Console.WriteLine("Começa" + 15);
+            Inicializa(15);
+            Console.WriteLine("Começa" + 20);
+            Inicializa(20);
+            Console.WriteLine("Começa" + 25);
+            Inicializa(25);
+            Console.WriteLine("Começa" + 30);
+            Inicializa(30);
         }
 
         static void contabilizaTodosTempos(Cidades matriz)
